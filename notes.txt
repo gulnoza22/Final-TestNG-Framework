@@ -1,0 +1,127 @@
+EXLUDE A METHOD FROM RUN
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+    <test name="Login tests">
+        <classes>
+            <class name="com.cbt.tests.login.LoginTests">
+            
+                <methods>
+                    <exclude name="invalidUsernameTest" />
+                </methods>
+            </class>
+
+
+            <class name="com.cbt.tests.order.OrderTests"></class>
+
+        </classes>
+    </test>
+
+</suite>
+
+
+INCLUDE A METHOD IN RUN
+
+
+
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+    <test name="Login tests">
+        <classes>
+            <class name="com.cbt.tests.login.LoginTests">
+            
+                <methods>
+                    <include name="invalidUsernameTest" />
+                </methods>
+            </class>
+
+
+            <class name="com.cbt.tests.order.OrderTests"></class>
+
+        </classes>
+    </test>
+
+</suite>
+
+
+
+
+TARGET A CERTQIN PACKAGE
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+    <test name="Login tests">
+        <packages>
+            <package name="com.cbt.tests.order"></package>
+        </packages>
+    </test>
+
+</suite>
+
+RUN TWO PACKAGES
+
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+    <test name="Login tests">
+        <packages>
+            <package name="com.cbt.tests.order"></package>
+            <package name="com.cbt.tests.login"></package>
+        </packages>
+    </test>
+
+</suite>
+
+
+BATCH RUN == RUN EVERYTHING
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+    <test name="Login tests">
+        <packages>
+            <package name=".*"></package>
+        </packages>
+    </test>
+
+</suite>
+
+
+________
+
+RUNNING FROM COMMAND LINE
+
+To run the test using cmd we enter command :
+    
+    mvn test
+sequence of calls when we run testng test using command line:
+    
+    1. mvn test --> this command run the pom xml
+
+    2. in the pom xml we have a plugin called maven-surefire-plugin which is pointing to testng_runner.xml. That means pom xml will trigger testng_runner.xml 
+        <suiteXmlFile>testng_runner.xml</suiteXmlFile>
+
+
+    3. testng_runner.xml will run all the tests inside the test tag.
+        <test name="Order smoke tests">
+        <packages>
+            <package name="com.cbt.tests.order"/>
+        </packages>
+    </test>
+
+
+_____
+
+
+    <suiteXmlFile>${runner}</suiteXmlFile>
+
+    ${runner}.  --> a varialbe with name. runner needs to be passed from terminal
+
+passing the smoke test runner as parameter to pom file:
+
+    mvn test -Drunner=smoke_test_runner.xml

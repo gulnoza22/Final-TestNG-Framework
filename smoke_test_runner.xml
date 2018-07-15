@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!--printing information in console -->
+<suite name="Smoke tests" verbose="2">
+	
+	<!--running smoke tests for Login only -->
+	<test name="Login smoke tests">
+		<packages>
+			<!--running all the tests inside specific packages -->
+			<package name="com.cbt.tests.login"></package>
+		</packages>
+	</test>
+	
+	<!--running smoke tests for Order only -->
+	<test name="Order smoke tests">
+		<packages>
+			<!--running all the tests inside specific packages -->
+			<package name="com.cbt.tests.order"></package>
+		</packages>
+	</test>
+
+</suite>
