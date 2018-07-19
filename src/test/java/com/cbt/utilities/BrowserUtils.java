@@ -1,13 +1,20 @@
 package com.cbt.utilities;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,6 +50,7 @@ public class BrowserUtils {
 	 * @param list
 	 * @return
 	 */
+	//didnt understand the difference between  two method. 
 	public static List<String> getElementsText(List<WebElement> list) {
 		List<String> elemTexts = new ArrayList<>();
 		for (WebElement el : list) {
@@ -65,7 +73,7 @@ public class BrowserUtils {
 		}
 		return elemTexts;
 	}
-
+   // This method used for Thread.sleep 
 	public static void waitFor(int sec) {
 		try {
 			Thread.sleep(sec * 1000);
@@ -73,7 +81,7 @@ public class BrowserUtils {
 			e.printStackTrace();
 		}
 	}
-
+     //this is explicit wait. Explicit wait waits for only specific one element and condition. 
 	public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeToWaitInSec);
 		return wait.until(ExpectedConditions.visibilityOf(element));
@@ -83,7 +91,7 @@ public class BrowserUtils {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
-
+    // explicit wait until the element is clickable
 	public static WebElement waitForClickablility(WebElement element, int timeout) {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -93,7 +101,7 @@ public class BrowserUtils {
 		WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
-
+   
 	public static void waitForPageToLoad(long timeOutInSeconds) {
 		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
@@ -122,5 +130,30 @@ public class BrowserUtils {
 		});
 		return element;
 	}
+	
+	
+	/**takes screenshot
+	 * @param name
+	 * take a name of the test and returns a path to screenshot takes
+	 * 
+	 */
+	
+	public static String getScreenshot(String name) throws IOException {
+		//every single screen shot is a file. name the screen shot with current date time to avoid duplicate name
+		//201907182345
+        String date= new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        //TakeScreenShot-->interface from selenium which take screenshots
+        TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
+        File source = ts.getScreenshotAs(OutputType.FILE);
+
+        //full path of the screenshot location will go to
+        String target = System.getProperty("user.dir") + "/test-output/Screenshots/"+name+date+".png";
+        
+        //save the screenshot to the path given
+        File finalDestination = new File(target);
+        FileUtils.copyFile(source, finalDestination);
+        //target is full path
+        return target;
+}
 
 }

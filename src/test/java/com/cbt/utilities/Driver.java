@@ -8,11 +8,12 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Driver {
-	
+	//Its private because  nobody create a Driver object from other classes. 
 	private Driver() {}
-	
+	// its private so we can use only inside the class. 
 	private static WebDriver driver;
-
+    
+	//creating method to use any browser in our tests. We can call by getDriver() method in other classes. 
 	public static WebDriver getDriver() {
 		if (driver == null) {
 			switch (ConfigurationReader.getProperty("browser")) {
@@ -32,10 +33,11 @@ public class Driver {
 		}
 		return driver;
 	}
-
+  // if our driver equal to any browsers then close it. 
 	public static void closeDriver() {
 		if (driver != null) {
 			driver.quit();
+			//ask
 			driver = null;
 		}
 	}

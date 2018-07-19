@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class ConfigurationReader {
 	private static Properties configFile;
-
+// Sinse Static block runs first and only once in java to be able to run first our Properties file we should definatle use static block. 
 	static {
 
 		try {
@@ -16,7 +16,7 @@ public class ConfigurationReader {
 			configFile.load(input);
 
 			input.close();
-		} catch (Exception e) {
+			} catch (Exception e) {
 			e.printStackTrace();
 
 		}

@@ -21,7 +21,7 @@ public class OrderTests extends TestBase {
 	String userId = ConfigurationReader.getProperty("username");
 	String password = ConfigurationReader.getProperty("password");
 
-	@Test(description = "Verify labels and tab links are displayed", priority = 1)
+	@Test(groups= {"smoke"},description = "Verify labels and tab links are displayed", priority = 1)
 	public void labelsVerication() {
 		LoginPage loginPage = new LoginPage();
 
@@ -36,7 +36,7 @@ public class OrderTests extends TestBase {
 		assertTrue(allOrdersPage.orderTab.isDisplayed(), "orderTab is not displayed");
 	}
 
-	@Test(description = "Verify default Products and prices")
+	@Test(groups= {"smoke",},description = "Verify default Products and prices")
 	public void availableProductsTest() {
 		assertEquals(driver.getTitle(), "Web Orders Login", "LoginPage is not displayed. Application is down.");
 		LoginPage loginPage = new LoginPage();

@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="WebOrders Automation" verbose="2">
+
+	
+	
+	<test name="Automated Tests 1 by Gulnoza">
+		<classes>
+		<!--running tests by class name-->
+			<class name="com.cbt.tests.login.LoginTests">
+				<methods>
+					<!-- running (include) specific methods in the test-->
+					<exclude name="positiveloginTest"></exclude>
+					<include name="positiveLoginUsingPageObjectModel"></include>
+				</methods>
+			</class>
+			
+		</classes>
+	</test>
+
+</suite>

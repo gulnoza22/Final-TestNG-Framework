@@ -2,7 +2,7 @@
 <!--printing information in console-->
 <suite name="WebOrders Automation" verbose="2">
 
-	<test name="Automated tests">
+	<test name="Automated Tests 1">
 		<classes>
 		<!--running tests by class name-->
 			<class name="com.cbt.tests.login.LoginTests">
@@ -15,7 +15,7 @@
 		</classes>
 	</test>
 	
-	<test name="Automated tests">
+	<test name="Automated Tests 2">
 		<packages>
 			<!--running all the tests inside specific packages-->
 			<package name="com.cbt.tests.order"></package>

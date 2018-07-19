@@ -3,7 +3,7 @@
 <suite name="Smoke tests" verbose="2">
 	
 	<!--running smoke tests for Login only -->
-	<test name="Login smoke tests">
+	<test name="Login smoke tests by Gulnoza">
 		<packages>
 			<!--running all the tests inside specific packages -->
 			<package name="com.cbt.tests.login"></package>
@@ -11,11 +11,26 @@
 	</test>
 	
 	<!--running smoke tests for Order only -->
-	<test name="Order smoke tests">
+	<test name="Order smoke tests by Gulnoza">
 		<packages>
 			<!--running all the tests inside specific packages -->
 			<package name="com.cbt.tests.order"></package>
 		</packages>
+	</test>
+	
+	<test name="Automated Tests 1">
+		<classes>
+		<!--running tests by class name-->
+			<class name="com.cbt.tests.login.LoginTests">
+				<methods>
+					<!--not running (excluding) specific methods in the test-->
+					<exclude name="invalidUsernameTest"></exclude>
+					<!-- running (include) specific methods in the test-->
+					<!--<include name="positiveloginTest"-->
+				</methods>
+			</class>
+			<class name="com.cbt.tests.order.OrderTests"></class>
+		</classes>
 	</test>
 
 </suite>
